@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
+
 def plot_gantt(permutation, title="Harmonogram RPQ"):
     fig, ax = plt.subplots(figsize=(16, 10))
 
@@ -32,6 +33,10 @@ def plot_gantt(permutation, title="Harmonogram RPQ"):
 
         ax.broken_barh([(d['s_j'], d['c_j'] - d['s_j'])], (y_pos + 0.3, 0.4),
                        facecolors='royalblue', edgecolors='black', zorder=10)
+        duration_p = d['c_j'] - d['s_j']
+        ax.text(d['s_j'] + duration_p / 2, y_pos + 0.5, f"{d['id']}",
+                      ha='center', va='center', color='white', fontweight='bold',
+                      fontsize=10, zorder=11)
         ax.text(d['s_j'] + (d['c_j'] - d['s_j']) / 2, y_pos + 0.5, f"Z{d['id']}",
                 ha='center', va='center', color='white', fontweight='bold')
 
