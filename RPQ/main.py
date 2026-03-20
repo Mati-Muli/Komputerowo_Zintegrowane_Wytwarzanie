@@ -1,11 +1,8 @@
 import copy
-import sys
 import carlier as car_mod
 from generator import generate_tasks
 from schrage import schrage, schrage_heap, schrage_pmtn, calculate_cmax
 from wykresy import plot_gantt
-
-
 
 def print_result(label, pi):
     if isinstance(pi, list):
@@ -17,7 +14,6 @@ def print_result(label, pi):
 
 
 if __name__ == "__main__":
-    # --- KONFIGURACJA ---
     N_TASKS = 10
     SEED = 2026
 
@@ -25,7 +21,6 @@ if __name__ == "__main__":
     print(f"   Parametry: n={N_TASKS}, seed={SEED}")
     print("=" * 70 + "\n")
 
-    # Instrukcja wymaga przetestowania dwóch wariantów zakresu q_j (X=29 i X=A)
     datasets = [
         ("ZESTAW: MAŁE q (X=29)", generate_tasks(N_TASKS, SEED, use_large_q=False)),
         ("ZESTAW: DUŻE q (X=A)", generate_tasks(N_TASKS, SEED, use_large_q=True))

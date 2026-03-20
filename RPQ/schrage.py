@@ -30,7 +30,7 @@ def schrage(tasks):
 
 def schrage_heap(tasks):
     n_set = list(tasks)
-    heapq.heapify(n_set) # Sortuje po r dzięki Task.__lt__
+    heapq.heapify(n_set)
     g_set = []
     pi = []
     t = n_set[0].r if n_set else 0

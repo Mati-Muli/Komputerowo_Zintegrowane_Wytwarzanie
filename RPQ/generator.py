@@ -1,7 +1,7 @@
 import random
 from task import Task
 
-
+## Nie wiem czy na takiej zasadzie ma działać ten generator, że takie liczby, jakbyś mogła skontrolować
 def generate_tasks(n, seed, use_large_q=False):
     rng = random.Random(seed)
 
@@ -12,7 +12,7 @@ def generate_tasks(n, seed, use_large_q=False):
 
     tasks = []
     for i in range(n):
-        r_j = rng.randint(1, 50)
+        r_j = rng.randint(1, sum_p)
 
         q_j = rng.randint(1, x_limit)
         tasks.append(Task(i + 1, r_j, p_times[i], q_j))

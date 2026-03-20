@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
-
 def plot_gantt(permutation, title="Harmonogram RPQ"):
     fig, ax = plt.subplots(figsize=(16, 10))
 
@@ -11,7 +10,7 @@ def plot_gantt(permutation, title="Harmonogram RPQ"):
     for task in permutation:
         s_j = max(task.r, t_moment)  # Moment rozpoczęcia Sj
         c_j = s_j + task.p  # Moment zakończenia Cj
-        q_end = c_j + task.q  # Moment opuszczenia systemu[cite: 1]
+        q_end = c_j + task.q  # Moment opuszczenia systemu
 
         data.append({
             'id': task.id,
