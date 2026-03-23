@@ -7,8 +7,6 @@ best_pi = []
 
 def carlier(tasks):
     global best_u, best_pi
-
-    # 1. Obliczamy Schrage dla aktualnego zestawu
     pi = schrage_heap(tasks)
     u = calculate_cmax(pi)
 
@@ -16,7 +14,7 @@ def carlier(tasks):
         best_u = u
         best_pi = copy.deepcopy(pi)
 
-    # 2. Znalezienie parametrów bloku krytycznego
+    # Znalezienie parametrów bloku krytycznego
     b = -1
     t_moment = 0
     c_times = [0] * len(pi)
@@ -43,18 +41,13 @@ def carlier(tasks):
     if c == -1:
         return best_pi
 
-    # Blok K (zadania po c do b)
     k_block = pi[c + 1: b + 1]
     r_k = min(t.r for t in k_block)
     q_k = min(t.q for t in k_block)
     p_k = sum(t.p for t in k_block)
 
-    # --- Gałąź LEWA (modyfikacja r) ---
-    # Tworzymy kopię zadań dla tej gałęzi, aby nie "brudzić" danych
     tasks_left = copy.deepcopy(tasks)
-    # Znajdujemy zadanie c w nowej liście po ID
     task_c_left = next(t for t in tasks_left if t.id == pi[c].id)
-
     old_r = task_c_left.r
     task_c_left.r = max(old_r, r_k + p_k)
 

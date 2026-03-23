@@ -1,7 +1,6 @@
 import random
 from task import Task
 
-## Nie wiem czy na takiej zasadzie ma działać ten generator, że takie liczby, jakbyś mogła skontrolować
 def generate_tasks(n, seed, use_large_q=False):
     rng = random.Random(seed)
 

@@ -24,7 +24,6 @@ def plot_gantt(permutation, title="Harmonogram RPQ"):
         t_moment = c_j
         max_time = max(max_time, q_end)
 
-    # 2. Rysowanie warstwowe
     for i, d in enumerate(data):
         y_pos = i
         ax.broken_barh([(d['r_start'], d['r_val'])], (y_pos + 0.55, 0.2),

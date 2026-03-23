@@ -28,6 +28,7 @@ def schrage(tasks):
             t = min(n_set).r
     return pi
 
+# Górne ograniczenie
 def schrage_heap(tasks):
     n_set = list(tasks)
     heapq.heapify(n_set)
@@ -46,8 +47,8 @@ def schrage_heap(tasks):
             t = n_set[0].r
     return pi
 
+# Dolne ograniczenie
 def schrage_pmtn(tasks):
-    """Dolne ograniczenie dla Carliera"""
     n_set = list(copy.deepcopy(tasks))
     heapq.heapify(n_set)
     g_set = []
