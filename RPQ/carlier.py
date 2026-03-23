@@ -53,7 +53,7 @@ def carlier(tasks):
 
     if schrage_pmtn(tasks_left) < best_u:
         carlier(tasks_left)
-  
+
     tasks_right = copy.deepcopy(tasks)
     task_c_right = next(t for t in tasks_right if t.id == pi[c].id)
 
