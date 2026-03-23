@@ -1,7 +1,7 @@
 # Komputerowo zintegrowane wytwarzanie
 
 # Laboratorium 2
-
+<details>
 ## Badany problem:
 Problem *1|ri, qi|Cmax* należy do klasy problemów szeregowania zadań na jednej maszynie.
 
@@ -205,3 +205,4 @@ if schrage_pmtn(tasks_left) < best_u:
 Algorytm Schrage pozwala na szybkie wyznaczenie dobrego rozwiązania przybliżonego,
 natomiast algorytm Carliera umożliwia znalezienie rozwiązania optymalnego kosztem
 większej złożoności obliczeniowej.
+</details>
