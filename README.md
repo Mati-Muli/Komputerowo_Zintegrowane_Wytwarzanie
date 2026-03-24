@@ -2,7 +2,8 @@
 
 # Laboratorium 2
 <details>
-    
+<summary> Opisa zadania </summary>
+
 ## Badany problem:
 Problem *1|ri, qi|Cmax* należy do klasy problemów szeregowania zadań na jednej maszynie.
 
