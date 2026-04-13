@@ -1,6 +1,6 @@
 # Komputerowo zintegrowane wytwarzanie
 
-# Laboratorium 2
+# Zadanie 2
 <details>
 <summary> Opis zadania </summary>
 
@@ -207,4 +207,10 @@ if schrage_pmtn(tasks_left) < best_u:
 Algorytm Schrage pozwala na szybkie wyznaczenie dobrego rozwiązania przybliżonego,
 natomiast algorytm Carliera umożliwia znalezienie rozwiązania optymalnego kosztem
 większej złożoności obliczeniowej.
+</details>
+
+# Zadanie 3
+<details>
+<summary> Opis zadania </summary>
+    TBA
 </details>
