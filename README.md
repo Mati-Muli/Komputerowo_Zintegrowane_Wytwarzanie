@@ -1,6 +1,6 @@
 # Komputerowo zintegrowane wytwarzanie
 
-# Zadanie 2
+# Zadanie 2 - RPQ
 <details>
 <summary> Opis zadania </summary>
 
