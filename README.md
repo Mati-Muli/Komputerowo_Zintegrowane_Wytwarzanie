@@ -212,5 +212,106 @@ większej złożoności obliczeniowej.
 # Zadanie 3
 <details>
 <summary> Opis zadania </summary>
-    TBA
+    
+## Badany problem:
+Problem *F P||Cmax* jest klasyczny problem szeregowania typu flow shop, gdzie na każdej maszynie kolejność wykonywanych zadań jest inna.
+
+Dla badanego problemu, mamy zbiór *n* zadań:
+
+*J={1,2,...,n}*
+
+zbiór maszyn:
+
+*M={1,2,...,m}*
+
+Każde zadanie j składa się z ciągu operacji:
+
+*Oj​=(o1j​,o2j​,...,omj​)*
+
+gdzie:
+- *oij​* -operacja zadania j na maszynie i,
+- *pij* - czas trwania operacji.
+
+### Ograniczenia
+1. Na każdej maszynie w danym momencie może być wykonywana tylko jedna operacja
+2. Operacje zadania muszą być wykonywane w ustalonej kolejności (technologicznej)
+
+### Cel
+Celem jest minimalizacja czasu zakończenia wszystkich zadań Cmax:
+<img width="440" height="112" alt="image" src="https://github.com/user-attachments/assets/b429dadc-0ee5-4e24-9d7e-be123c455dbd" />
+
+## Sposób generowania instancji:
+Instancje generowane są losowo na podstawie parametrów:
+- liczba zadań *n*
+- liczba maszyn *m*
+- ziarno generatora *Z*
+
+1. Inicjalizacja generatora liczb pseudolosowych:
+```
+init(Z)
+```
+2. Dla każdego zadania *j∈J*:
+- dla każdej maszyny *i∈M*:
+<img width="272" height="44" alt="image" src="https://github.com/user-attachments/assets/577a069d-d9f3-41fe-b7e8-505c312e33dd" />
+
+Instancja jest zapisana jako macierz:
+```
+p[j][i]
+```
+gdzie j - indeks zadania, i - indeks maszyny
+
+## Metody rozwiązania:
+
+### Algorytm Johnsona
+Algorytm Johnsona polega na kolejnym znajdywaniu operacji o najkrótszym czasie wykonywania na pierwszej lub drugiej
+Maszynie, należy więc on do metod dedykowanych dla problemu *F P2||Cmax*. 
+
+W ramach badanego problemu algorytm został rozszerzony o dodatkową 'środkową' maszynę wirtualną, dzięki czemu możliwe jest operowanie na 3 maszynach..
+```
+virtual = []
+for j in range(n):
+    p1 = p[j][0] + p[j][1]
+    p2 = p[j][1] + p[j][2]
+    virtual.append((j, p1, p2))
+```
+gdzie p1 oraz p2 wyznaczają czas wykonania na wirtualnych maszynach.
+
+__Główna idea działania:__
+
+```
+jobs = virtual.copy()
+
+while jobs:
+    min_job = min(jobs, key=lambda x: min(x[1], x[2]))
+
+    if min_job[1] < min_job[2]: #1.
+        left.append(min_job[0])
+    else:
+        right.insert(0, min_job[0]) #2.
+
+    jobs.remove(min_job) #3.
+
+return left + right
+```
+
+1. Dla każdego zadania oblicz czasy na maszynach wirtualnych
+2. Wybierz zadanie z najmniejszym czasem:
+    - jeśli minimum jest na M1' → dodaj na początek
+    - jeśli na M2' → dodaj na koniec
+3. Usuń zadanie i powtarzaj
+
+### Metoda siłowa (Brute Force)
+Metoda siłowa to technika rozwiązywania problemów polegająca na bezpośrednim sprawdzeniu wszystkich możliwych kombinacji lub rozwiązań, aż do znalezienia właściwego.
+
+Sprawdzane są wszystkie możliwe permutacje zadań *n!*
+
+gdzie dla każdej permutacji:
+- obliczany jest *Cmax*,
+- wybierane jest najlepsze rozwiązanie.
+	​
+
+### Metoda podziału i ograniczeń (Branch and Bound)
+
+## Wnioski
+
 </details>
