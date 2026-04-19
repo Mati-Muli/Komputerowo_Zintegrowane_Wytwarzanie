@@ -6,9 +6,9 @@ from utils import print_instance, print_schedule, gantt_chart, measure_time
 from flowshop import calculate_cmax
 
 # parametry
-n, m, seed = 5, 3, 123
+n, m = 5, 3
 
-p = generate_instance(n, m, seed)
+p = generate_instance(n, m)
 
 print_instance(p)
 
