@@ -309,9 +309,71 @@ gdzie dla każdej permutacji:
 - obliczany jest *Cmax*,
 - wybierane jest najlepsze rozwiązanie.
 	​
-
 ### Metoda podziału i ograniczeń (Branch and Bound)
 
-## Wnioski
+*Metoda Branch and Bound (BnB)* polega na przeszukiwaniu przestrzeni wszystkich permutacji zadań w postaci drzewa, z jednoczesnym odrzucaniem tych gałęzi, które nie mogą prowadzić do rozwiązania lepszego od aktualnie najlepszego.
+
+Każdy węzeł drzewa odpowiada:
+- częściowej permutacji zadań (partial)
+- zbiorowi pozostałych zadań (remaining)
+
+__Górne ograniczenie (Upper Bound, UB)__
+
+Jako początkowe rozwiązanie przyjmowane jest rozwiązanie heurystyczne uzyskane za pomocą algorytmu Johnsona:
+```
+init_perm = johnson_3machines(p)
+UB = calculate_cmax(p, init_perm)
+```
+__Dolne ograniczenie (Lower Bound, LB)__
+
+Dolne ograniczenie szacuje najlepszy możliwy czas zakończenia dla danej częściowej permutacji.
+
+Najpierw obliczane są czasy zakończenia operacji dla aktualnej częściowej permutacji:
+```
+def get_machine_times(p, partial):
+    if not partial:
+        return [0] * len(p[0])
+
+    m = len(p[0])
+    times = [0] * m
+    for job in partial:
+        times[0] += p[job][0]
+        for i in range(1, m):
+            times[i] = max(times[i - 1], times[i]) + p[job][i]
+    return times
+```
+Następnie dla każdej maszyny wyznaczane jest ograniczenie:
+<img width="709" height="108" alt="image" src="https://github.com/user-attachments/assets/fce9bb6a-eb11-4373-9ed4-0e1920685952" />
+
+__Implementacja:__
+```
+def lower_bound(p, partial, remaining):
+    m = len(p[0])
+    completion_times = get_machine_times(p, partial)
+    lb_values = []
+
+    for i in range(m):
+        c_i_x = completion_times[i]
+        sum_p_ij = sum(p[job][i] for job in remaining)
+
+        sum_min_pkj = 0
+        for k in range(i + 1, m):
+            sum_min_pkj += min(p[job][k] for job in remaining)
+
+        lb_values.append(c_i_x + sum_p_ij + sum_min_pkj)
+
+    return max(lb_values)
+```
+__Przebieg algorytmu:__
+1. Start od pustej permutacji
+2. Rekurencyjne budowanie drzewa permutacji (DFS)
+3. Dla każdego węzła:
+	- obliczenie LB
+	- porównanie z UB
+	- ewentualne odcięcie gałęzi
+4. Aktualizacja UB po znalezieniu lepszego rozwiązania
+
+## Wyniki
+<img width="294" height="138" alt="image" src="https://github.com/user-attachments/assets/e740479e-dc9f-48ec-bbb7-5c575e0bd47e" />
 
 </details>
