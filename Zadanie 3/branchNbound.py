@@ -1,6 +1,7 @@
 from flowshop import calculate_cmax
 from johnson import johnson_3machines
 
+# ograniczenie dolne LB3
 
 def get_machine_times(p, partial):
     if not partial:
