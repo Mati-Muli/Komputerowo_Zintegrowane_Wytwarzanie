@@ -343,7 +343,8 @@ def get_machine_times(p, partial):
     return times
 ```
 Następnie dla każdej maszyny wyznaczane jest ograniczenie:
-<img width="709" height="108" alt="image" src="https://github.com/user-attachments/assets/fce9bb6a-eb11-4373-9ed4-0e1920685952" />
+<img width="1045" height="174" alt="image" src="https://github.com/user-attachments/assets/f317fcc8-161e-4e97-b3ea-c554450ef687" />
+
 
 __Implementacja:__
 ```
