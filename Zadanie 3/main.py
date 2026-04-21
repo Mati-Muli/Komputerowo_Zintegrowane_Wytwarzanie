@@ -44,4 +44,6 @@ print(f"Brute Force  {cmax_bf:<8} {time_bf:.6f}")
 print(f"BnB          {cmax_bnb:<8} {time_bnb:.6f}")
 
 # wykres gantta dla najlepszej permutacji
+gantt_chart(p, perm_j)
 gantt_chart(p, perm_bnb)
+gantt_chart(p, perm_bf)
