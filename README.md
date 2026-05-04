@@ -476,8 +476,8 @@ Cechy:
 - znacznie szybszy niż brute force, ale nadal wykładniczy
   
 ## Wyniki:
-<img width="457" height="136" alt="image" src="https://github.com/user-attachments/assets/f6fd700b-9be9-4288-813c-f12a2f41f22b" />
-<img width="1770" height="986" alt="image" src="https://github.com/user-attachments/assets/eeff0e9d-a08e-471d-96ab-4ff8deec2103" />
+<img width="558" height="138" alt="image" src="https://github.com/user-attachments/assets/946c3b71-1092-404a-8e69-b1be40e0dabf" />
+<img width="2560" height="1375" alt="Figure_1" src="https://github.com/user-attachments/assets/ac78630e-f221-4b71-a31c-0e8aae741a67" />
 
 
 
