@@ -378,3 +378,118 @@ __Przebieg algorytmu:__
 <img width="294" height="138" alt="image" src="https://github.com/user-attachments/assets/e740479e-dc9f-48ec-bbb7-5c575e0bd47e" />
 
 </details>
+
+
+# Zadanie 4 
+<details>
+<summary> Opis zadania </summary>
+
+## Badany problem:
+
+Problem *1|wj, dj| __Σ__ wjTj* możemy zapisać w skrócie *1|| __Σ__ wjTj*, ponieważ parametry problemu wynikają z kryterium optymalizacyjnego. 
+
+Dla badanego problemu, mamy zbiór n zadań wykonywanych na maszynie:
+
+*J={1,2,...,n}*
+
+gdzie j-te zadanie składa się z trzech parametrów:
+- *pj* - czas wykonania (performed time),
+- *wj* - waga (weight)/współczynnik kary,
+- *dj* - żądany termin zakończenia (deadline).
+
+### Ograniczenia
+1. Każde zadanie musi być wykonywane nieprzerwanie przez *pπ(j)* czasu na maszynie. 
+2. Na każdej maszynie w danym momencie może być wykonywana tylko jedna operacja
+3. Każde zadanie powinno być ukończone przed jego żądanym
+terminem ukończenia dπ(j), w przeciwnym wypadku zostanie naliczona kara.
+
+## Sposób generowania instancji:
+
+Instancje problemu są generowane losowo przy użyciu funkcji generate_instance(n, X_type).
+
+Dla każdej z n zadań losowane są:
+- czas przetwarzania p∈[1,29]
+- waga w∈[1,9]
+
+Następnie wyznaczana jest wartość X:
+- dla typu "A": X=∑pi
+- w przeciwnym przypadku: X=29
+
+Terminy wykonania d są losowane z zakresu:
+- d∈[1,X]
+
+Każde zadanie reprezentowane jest jako obiekt klasy Task, zawierający:
+- id – identyfikator zadania
+- p – czas wykonania
+- w – waga
+- d – termin realizacji
+
+Funkcja celu to ważona suma opóźnień (Weighted Tardiness):
+<img width="417" height="216" alt="image" src="https://github.com/user-attachments/assets/1b62710a-1eb2-4392-ae44-93159a27bd7c" />
+
+## Metody rozwiązania:
+
+### 1. Algorytm zachłanny
+
+Zadania są sortowane rosnąco według terminów d.
+
+Najważniejsze cechy:
+- bardzo szybki: O(nlogn)
+- prosty w implementacji
+- nie gwarantuje rozwiązania optymalnego dla ważonego opóźnienia
+
+W kodzie:
+```
+sorted(tasks, key=lambda x: x.d)
+```
+### 2. Przegląd zupełny (Brute Force)
+
+Algorytm sprawdza wszystkie możliwe permutacje zadań:
+- generuje n! kolejności
+- dla każdej liczy wartość funkcji celu
+- wybiera najlepszą
+
+Najważniejsze cechy:
+- gwarantuje rozwiązanie optymalne
+- bardzo wolny (złożoność O(n!))
+- użyteczny tylko dla małych n (np. n≤10)
+- 
+### 3. Programowanie dynamiczne
+
+Algorytm oparty na reprezentacji zbiorów zadań jako masek bitowych.
+
+Najważniejsze elementy:
+- mask reprezentuje podzbiór wykonanych zadań
+- memory[mask] przechowuje minimalny koszt dla danego zbioru
+- parent pozwala odtworzyć rozwiązanie
+
+Dla każdego podzbioru:
+-sprawdzane jest, które zadanie wykonać jako ostatnie
+-koszt liczony jest na podstawie sumy czasów w zbiorze
+
+Złożoność:
+<img width="541" height="107" alt="image" src="https://github.com/user-attachments/assets/79f44426-f287-4b88-b86c-3856c5ea4cd9" />
+
+
+Cechy:
+- daje rozwiązanie optymalne
+- znacznie szybszy niż brute force, ale nadal wykładniczy
+  
+## Wyniki:
+<img width="457" height="136" alt="image" src="https://github.com/user-attachments/assets/f6fd700b-9be9-4288-813c-f12a2f41f22b" />
+<img width="1770" height="986" alt="image" src="https://github.com/user-attachments/assets/eeff0e9d-a08e-471d-96ab-4ff8deec2103" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
