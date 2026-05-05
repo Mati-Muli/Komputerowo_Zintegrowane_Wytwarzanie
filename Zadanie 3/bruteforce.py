@@ -1,22 +1,12 @@
-from flowshop import calculate_cmax
+import itertools
+from tasks import calculate_objective
 
-def brute_force(p):
-    n = len(p)
-    best_perm = None
-    best_cmax = float('inf')
-
-    def dfs(partial, remaining):
-        nonlocal best_perm, best_cmax
-
-        if not remaining:
-            cmax = calculate_cmax(p, partial)
-            if cmax < best_cmax:
-                best_cmax = cmax
-                best_perm = partial[:]
-            return
-
-        for job in remaining:
-            dfs(partial + [job], [j for j in remaining if j != job])
-
-    dfs([], list(range(n)))
-    return best_perm, best_cmax
+def solve_brute_force(tasks):
+    best_value = float('inf')
+    best_seq = None
+    for p in itertools.permutations(tasks):
+        val = calculate_objective(p)
+        if val < best_value:
+            best_value = val
+            best_seq = p
+    return list(best_seq), best_value

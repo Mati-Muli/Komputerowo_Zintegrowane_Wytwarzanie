@@ -23,10 +23,10 @@ def generate_instance(n, X_type="A"):
     return [Task(d['id'], d['p'], d['w'], random.randint(1, X)) for d in tasks_data]
 
 def calculate_objective(sequence):
-    total_weighted_tardiness = 0
+    twt = 0
     current_time = 0
     for task in sequence:
         current_time += task.p
         tardiness = max(0, current_time - task.d)
-        total_weighted_tardiness += task.w * tardiness
-    return total_weighted_tardiness
+        twt += task.w * tardiness
+    return twt
