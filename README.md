@@ -1,6 +1,6 @@
 # Komputerowo zintegrowane wytwarzanie
 
-# Zadanie 2 - RPQ
+# Zadanie 1 - RPQ
 <details>
 <summary> Opis zadania </summary>
 
@@ -209,7 +209,7 @@ natomiast algorytm Carliera umożliwia znalezienie rozwiązania optymalnego kosz
 większej złożoności obliczeniowej.
 </details>
 
-# Zadanie 3
+# Zadanie 2
 <details>
 <summary> Opis zadania </summary>
     
@@ -380,7 +380,7 @@ __Przebieg algorytmu:__
 </details>
 
 
-# Zadanie 4 
+# Zadanie 3 
 <details>
 <summary> Opis zadania </summary>
 
